@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>— Nabila Stevani Alviny Gultom — Personal Universe</title>
+  <meta name="description" content="Personal website of Nabila Stevani Alviny Gultom — Content Creator Sejarah Indonesia, Mahasiswi Poltekpar Medan, Portfolio & More." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta property="og:title" content="Nabila Stevani Alviny Gultom — Personal Universe" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+  <link rel="apple-touch-icon" href="./favicon.png" />
+
+  <!-- Fonts: Premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Grotesk:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     LOADING SCREEN
+═══════════════════════════════════════════ -->
+<div id="loading-screen">
+  <div class="loader-inner">
+    <div class="loader-line-top"></div>
+    <div class="loader-name">
+      <span class="loader-char" style="--d:0">N</span>
+      <span class="loader-char" style="--d:1">A</span>
+      <span class="loader-char" style="--d:2">B</span>
+      <span class="loader-char" style="--d:3">I</span>
+      <span class="loader-char" style="--d:4">L</span>
+      <span class="loader-char" style="--d:5">A</span>
+    </div>
+    <div class="loader-progress-wrap">
+      <div class="loader-progress-bar"></div>
+      <span class="loader-progress-num">0%</span>
+    </div>
+    <div class="loader-line-bottom"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CURSOR (Premium)
+═══════════════════════════════════════════ -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- ═══════════════════════════════════════════
+     MUSIC PLAYER
+═══════════════════════════════════════════ -->
+<div id="music-widget" class="music-widget">
+  <button id="music-toggle" class="music-toggle" aria-label="Toggle music">
+    <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+    <svg id="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+  </button>
+  <div class="music-bars" id="music-bars">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <span class="music-label">Now Playing — Ambient Heritage Melody</span>
+</div>
+<audio id="bg-music" loop autoplay>
+  <source src="./assets/backsounds/all-night-by-beyonce.opus" type="audio/ogg" />
+  <source src="./assets/backsounds/ambient_theme.mp3" type="audio/mpeg" />
+</audio>
+
+<!-- ═══════════════════════════════════════════
+     SCROLL PROGRESS LINE
+═══════════════════════════════════════════ -->
+<div id="scroll-progress-line"></div>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════ -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <span class="logo-initial" id="logo-initial">N</span>
+      <span class="logo-full" id="logo-name">Nabila Stevani Alviny Gultom</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home" class="nav-link" data-s="home">Home</a></li>
+      <li><a href="#about" class="nav-link" data-s="about">About</a></li>
+      <li><a href="#experience" class="nav-link" data-s="experience">Experience</a></li>
+      <li><a href="#skills" class="nav-link" data-s="skills">Skills</a></li>
+      <li><a href="#gallery" class="nav-link" data-s="gallery">Gallery</a></li>
+      <li><a href="birthday.html" class="nav-link nav-link--bday">Birthday ✦</a></li>
+    </ul>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+  <nav>
+    <a href="#home" class="mm-link">01 — Home</a>
+    <a href="#about" class="mm-link">02 — About</a>
+    <a href="#experience" class="mm-link">03 — Experience</a>
+    <a href="#skills" class="mm-link">04 — Skills</a>
+    <a href="#gallery" class="mm-link">05 — Gallery</a>
+    <a href="birthday.html" class="mm-link">06 — Birthday</a>
+  </nav>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  01 — HERO SECTION
+═══════════════════════════════════════════ -->
+<section id="home" class="section hero-section">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-bg-word" aria-hidden="true">NABILA</div>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow" data-gsap="fade-up">
+        <span class="eyebrow-line"></span>
+        <span>Personal Universe · 2026</span>
+      </div>
+
+      <h1 class="hero-headline">
+        <span class="headline-word" data-gsap="fade-up" style="--di:1">Hello,</span>
+        <span class="headline-word headline-italic" data-gsap="fade-up" style="--di:2">I'm</span>
+        <span class="headline-word headline-name" data-gsap="fade-up" style="--di:3" id="hero-name">Nabila</span>
+      </h1>
+
+      <div class="hero-role-wrap" data-gsap="fade-up" style="--di:4">
+        <div class="hero-role-slider">
+          <div class="role-slide-inner" id="role-slider-inner">
+            <span>History Content Creator</span>
+            <span>Poltekpar Medan Student</span>
+            <span>Museum & Heritage Explorer</span>
+            <span>Hospitality Management (D-IV)</span>
+            <span>Creative Storyteller</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="hero-desc" data-gsap="fade-up" style="--di:5">
+        Selamat datang di universe personal saya — ruang tempat <em>sejarah unik Indonesia</em>, eksplorasi museum, keindahan seni hospitalitas, dan cerita hidup bertaut menjadi satu harmoni yang bermakna.
+      </p>
+
+      <div class="hero-cta" data-gsap="fade-up" style="--di:6">
+        <a href="#about" class="cta-btn cta-btn--primary">
+          <span class="cta-btn-text">Explore My World</span>
+          <span class="cta-btn-arrow">→</span>
+        </a>
+        <a href="birthday.html" class="cta-btn cta-btn--ghost">
+          Unlock Birthday Surprise ✦
+        </a>
+      </div>
+
+      <div class="hero-counters" data-gsap="fade-up" style="--di:7">
+        <div class="counter-item">
+          <span class="counter-num" data-target="100">0</span><span class="counter-plus">%</span>
+          <span class="counter-label">Dedication</span>
+        </div>
+        <div class="counter-divider"></div>
+        <div class="counter-item">
+          <span class="counter-num" data-target="14">0</span><span class="counter-plus">+</span>
+          <span class="counter-label">History Videos</span>
+        </div>
+        <div class="counter-divider"></div>
+        <div class="counter-item">
+          <span class="counter-num" data-target="100">0</span><span class="counter-plus">%</span>
+          <span class="counter-label">Passion for Heritage</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero image -->
+    <div class="hero-right" data-gsap="fade-left">
+      <div class="hero-photo-frame">
+        <div class="hero-photo-inner" id="hero-photo">
+          <img src="./assets/images/random_me/profil.jpg" alt="Nabila Stevani Alviny Gultom" style="width:100%; height:100%; object-fit:cover; object-position:center; border-radius:inherit;" />
+        </div>
+        <div class="hero-photo-label">
+          <span id="hero-photo-name">Nabila Stevani Alviny Gultom</span>
+          <span id="hero-photo-title">· Content Creator & Hospitality Student ·</span>
+        </div>
+        <div class="photo-deco-line top"></div>
+        <div class="photo-deco-line right"></div>
+        <div class="photo-deco-line bottom"></div>
+        <div class="photo-deco-line left"></div>
+        <div class="corner-mark tl"></div>
+        <div class="corner-mark tr"></div>
+        <div class="corner-mark bl"></div>
+        <div class="corner-mark br"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  02 — ABOUT SECTION
+═══════════════════════════════════════════ -->
+<section id="about" class="section about-section">
+  <div class="container">
+    <div class="section-header" data-gsap="fade-up">
+      <span class="section-num">02</span>
+      <div class="section-title-group">
+        <span class="section-eyebrow">Get to know me</span>
+        <h2 class="section-title">About <em>Me</em></h2>
+      </div>
+    </div>
+
+    <div class="about-layout">
+      <!-- Photo col -->
+      <div class="about-photo-col" data-gsap="fade-right">
+        <div class="about-frame">
+          <div class="about-photo" id="about-photo">
+            <img src="./assets/images/mirror_selfie/mirror selfie.webp" alt="About Nabila" style="width:100%; height:100%; object-fit:cover; object-position:center; border-radius:inherit;" />
+          </div>
+          <div class="about-tag tag-1">✦ History Creator</div>
+          <div class="about-tag tag-2">♡ Poltekpar Medan</div>
+          <div class="about-tag tag-3">★ GPIB Immanuel</div>
+        </div>
+        <!-- ID card -->
+        <div class="about-id-card">
+          <div class="id-card-row">
+            <span class="id-label">Name</span>
+            <span class="id-value" id="about-name">Nabila Stevani Alviny Gultom</span>
+          </div>
+          <div class="id-card-row">
+            <span class="id-label">Based in</span>
+            <span class="id-value" id="about-location">Medan, Sumatera Utara 🇮🇩</span>
+          </div>
+          <div class="id-card-row">
+            <span class="id-label">Church</span>
+            <span class="id-value" id="about-church">GPIB Immanuel Medan</span>
+          </div>
+          <div class="id-card-row">
+            <span class="id-label">Status</span>
+            <span class="id-value id-status">● Poltekpar Medan · D-IV Perhotelan</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content col -->
+      <div class="about-content-col">
+        <p class="about-big-quote" data-gsap="fade-up">
+          "Sejarah bukan sekadar masa lalu, melainkan cermin berharga yang membimbing langkah kita menatap masa depan."
+        </p>
+
+        <div class="about-body" data-gsap="fade-up">
+          <p>Hi, I'm <strong id="about-name-inline">Nabila Stevani Alviny Gultom</strong> — seorang Content Creator yang berfokus mengangkat kisah-kisah sejarah unik Indonesia yang jarang diketahui publik, sekaligus mahasiswi aktif Program Studi Diploma Empat (D-IV) Pengelolaan Perhotelan di <strong>Politeknik Pariwisata Medan</strong> (NIM: <strong>25470560</strong>).</p>
+          <p>Berasal dari Medan, Sumatera Utara, kecintaan saya pada sejarah membawa saya aktif berkarya lewat kanal YouTube <a href="https://www.youtube.com/@NabilaAlviny" target="_blank" style="color:#d4af37; text-decoration:underline;">@NabilaAlviny</a> dan TikTok <a href="https://www.tiktok.com/@nabilaviny" target="_blank" style="color:#d4af37; text-decoration:underline;">@nabilaviny</a> dengan moto <em>"Bahas Sejarah bareng-bareng yuk"</em>. Dari menjelajah setiap sudut Museum Negeri Sumatera Utara hingga menelisik jejak Pierre Tendean dan Tan Malaka, saya senang membagikan perspektif segar tentang warisan bangsa.</p>
+          <p>Di samping itu, saya juga telah dinyatakan <a href="./assets/docs/pdf-lulus-verifikasi-calon-praja-2024_compress.pdf" target="_blank" rel="noopener noreferrer" style="color:#d4af37; text-decoration:underline; font-weight:600;" title="Buka Dokumen SK Verifikasi Calon Praja IPDN 2024 (PDF)"><strong>Lulus Verifikasi Calon Praja IPDN 2024 ↗</strong></a> (Provinsi Sumatera Utara) dan lolos <a href="./assets/docs/pdf-pengumuman-hasil-sbt-polteknaker-2025_compress.pdf" target="_blank" rel="noopener noreferrer" style="color:#d4af37; text-decoration:underline; font-weight:600;" title="Buka Dokumen Pengumuman Hasil SBT Polteknaker 2025 (PDF)"><strong>seleksi administrasi SBT Polteknaker 2025 ↗</strong></a>. Berakar teguh dalam iman di GPIB Immanuel Medan, saya membawa dedikasi dan ketulusan hati dalam setiap langkah hidup dan kreasi. 🌟</p>
+        </div>
+
+        <div class="fun-facts" data-gsap="fade-up">
+          <h3 class="fun-facts-title">A few things about me —</h3>
+          <div class="fun-facts-grid">
+            <div class="ff-card card">
+              <div class="glow"></div>
+              <span class="ff-icon"><i class="ph ph-landmark"></i></span>
+              <p>Museum Enthusiast: Menyusuri setiap sudut Museum Sumut</p>
+            </div>
+            <div class="ff-card card">
+              <div class="glow"></div>
+              <span class="ff-icon"><i class="ph ph-scroll"></i></span>
+              <p>Untold History Buff: Menyingkap narasi unik masa lalu</p>
+            </div>
+            <div class="ff-card card">
+              <div class="glow"></div>
+              <span class="ff-icon"><i class="ph ph-buildings"></i></span>
+              <p>Hospitality Passion: D-IV Perhotelan Poltekpar Medan</p>
+            </div>
+            <div class="ff-card card">
+              <div class="glow"></div>
+              <span class="ff-icon"><i class="ph ph-cross"></i></span>
+              <p>GPIB Immanuel: Peneguhan Sidi & Persekutuan Iman</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-cta-row" data-gsap="fade-up">
+          <a href="#contact" class="cta-btn cta-btn--primary">Say Hello →</a>
+          <a href="#gallery" class="cta-btn cta-btn--ghost">My Gallery ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  03 — EXPERIENCE SECTION
+═══════════════════════════════════════════ -->
+<section id="experience" class="section experience-section">
+  <div class="container">
+    <div class="section-header" data-gsap="fade-up">
+      <span class="section-num">03</span>
+      <div class="section-title-group">
+        <span class="section-eyebrow">My Journey & Milestones</span>
+        <h2 class="section-title">Education & <em>Journey</em></h2>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="journey-timeline">
+      <div class="journey-line-wrap">
+        <div class="journey-line" id="exp-line"></div>
+      </div>
+
+      <!-- Experience 1: Poltekpar Medan -->
+      <div class="journey-item journey-item--left" data-gsap="fade-right">
+        <div class="journey-dot" style="border-color: #d4af37;">
+          <span class="journey-dot-inner" style="background-color: #d4af37;"></span>
+        </div>
+        <div class="journey-card card" style="--accent: #d4af37;" data-images='["./assets/images/random_me/profil.jpg", "./assets/banner/background_banner.jpg"]'>
+          <div class="glow"></div>
+          <div class="journey-card-top">
+            <span class="journey-icon"><i class="ph ph-graduation-cap"></i></span>
+            <span class="journey-year">2025 - Present</span>
+          </div>
+          <div class="journey-text-content">
+            <h3 class="journey-card-title">Mahasiswi D-IV Pengelolaan Perhotelan</h3>
+            <h4 class="journey-card-company">Politeknik Pariwisata Medan · Kemenparekraf RI</h4>
+            <p class="journey-card-desc">Menempuh studi Diploma Empat (D-IV) Pengelolaan Perhotelan dengan NIM <strong>25470560</strong>. Memperdalam manajemen hospitalitas modern, operasional perhotelan berstandar global, kepemimpinan kepariwisataan, dan service excellence.</p>
+          </div>
+          <div class="journey-card-img" style="margin-top: 1.5rem; border-radius: 12px; overflow: hidden; height: 160px; cursor: zoom-in; position: relative;">
+            <img src="./assets/images/random_me/profil.jpg" alt="Poltekpar Medan" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="img-count-badge" style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem;">1 / 2 📸</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience 2: Content Creator Sejarah -->
+      <div class="journey-item journey-item--right" data-gsap="fade-left">
+        <div class="journey-dot" style="border-color: #e63946;">
+          <span class="journey-dot-inner" style="background-color: #e63946;"></span>
+        </div>
+        <div class="journey-card card" style="--accent: #e63946;" data-images='["./assets/banner/background_banner.jpg", "./assets/videos/thumbnails/Menyusuri Setip Sudut Museum Sumatra Utara.jpg", "./assets/videos/thumbnails/Apakah Semua Kakak  Begitu Pierre Tendean Ini, Seorang Perwira Yang Gugur Pada Saat G30S.jpg", "./assets/videos/thumbnails/Sekelas Tan Malaka Pun Mengakui Kehebatan Negara Orang.jpg"]'>
+          <div class="glow"></div>
+          <div class="journey-card-top">
+            <span class="journey-icon"><i class="ph ph-video-camera"></i></span>
+            <span class="journey-year">2025 - Present</span>
+          </div>
+          <div class="journey-text-content">
+            <h3 class="journey-card-title">Sejarah Content Creator & Educator</h3>
+            <h4 class="journey-card-company">YouTube @NabilaAlviny · TikTok @nabilaviny</h4>
+            <p class="journey-card-desc">Menggagas inisiatif konten <em>"Bahas Sejarah bareng-bareng yuk"</em>. Meriset dan memproduksi belasan video dokumenter pendek bertema sejarah unik nusantara, mulai dari biografi Pierre Tendean, Tan Malaka, era NICA, hingga eksplorasi Museum Sumatra Utara.</p>
+          </div>
+          <div class="journey-card-img" style="margin-top: 1.5rem; border-radius: 12px; overflow: hidden; height: 160px; cursor: zoom-in; position: relative;">
+            <img src="./assets/banner/background_banner.jpg" alt="Content Creator Sejarah" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="img-count-badge" style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem;">1 / 4 📸</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience 3: Lulus Verifikasi IPDN 2024 -->
+      <div class="journey-item journey-item--left" data-gsap="fade-right">
+        <div class="journey-dot" style="border-color: #06b6d4;">
+          <span class="journey-dot-inner" style="background-color: #06b6d4;"></span>
+        </div>
+        <div class="journey-card card" style="--accent: #06b6d4;" data-images='["./assets/images/random_me/Untitled.webp"]'>
+          <div class="glow"></div>
+          <div class="journey-card-top">
+            <span class="journey-icon"><i class="ph ph-seal-check"></i></span>
+            <span class="journey-year">Juni 2024</span>
+          </div>
+          <div class="journey-text-content">
+            <h3 class="journey-card-title"><a href="./assets/docs/pdf-lulus-verifikasi-calon-praja-2024_compress.pdf" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;" title="Buka Dokumen SK IPDN (PDF)">Lulus Verifikasi Calon Praja IPDN 2024 ↗</a></h3>
+            <h4 class="journey-card-company">Institut Pemerintahan Dalam Negeri · Sumut</h4>
+            <p class="journey-card-desc">Dinyatakan Lulus Verifikasi Dokumen Persyaratan Administrasi pada Seleksi Penerimaan Calon Praja (SPCP) IPDN 2024 Provinsi Sumatera Utara (No. Registrasi: <strong>1513690013</strong>, SK Rektor IPDN No. 800.1.2.2-246 Tahun 2024).</p>
+            <div>
+              <a href="./assets/docs/pdf-lulus-verifikasi-calon-praja-2024_compress.pdf" target="_blank" rel="noopener noreferrer" class="journey-doc-link" title="Buka / Download PDF SK Kelulusan Verifikasi IPDN 2024">
+                <i class="ph ph-file-pdf"></i> Lihat / Unduh SK Verifikasi (PDF) ↗
+              </a>
+            </div>
+          </div>
+          <div class="journey-card-img" style="margin-top: 1.5rem; border-radius: 12px; overflow: hidden; height: 160px; cursor: zoom-in; position: relative;">
+            <img src="./assets/images/random_me/Untitled.webp" alt="Calon Praja IPDN" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="img-count-badge" style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem;">1 / 1 📸</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience 4: Seleksi Polteknaker 2025 -->
+      <div class="journey-item journey-item--right" data-gsap="fade-left">
+        <div class="journey-dot" style="border-color: #8b5cf6;">
+          <span class="journey-dot-inner" style="background-color: #8b5cf6;"></span>
+        </div>
+        <div class="journey-card card" style="--accent: #8b5cf6;" data-images='["./assets/images/mirror_selfie/mirror selfie.webp"]'>
+          <div class="glow"></div>
+          <div class="journey-card-top">
+            <span class="journey-icon"><i class="ph ph-clipboard-text"></i></span>
+            <span class="journey-year">Juli 2025</span>
+          </div>
+          <div class="journey-text-content">
+            <h3 class="journey-card-title"><a href="./assets/docs/pdf-pengumuman-hasil-sbt-polteknaker-2025_compress.pdf" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;" title="Buka Dokumen Pengumuman SBT Polteknaker (PDF)">Peserta Seleksi SBT Polteknaker 2025 ↗</a></h3>
+            <h4 class="journey-card-company">Politeknik Ketenagakerjaan · Kemnaker RI</h4>
+            <p class="journey-card-desc">Lolos Seleksi Administrasi Jalur Seleksi Berdasarkan Tes (SBT) Polteknaker 2025 untuk Program Studi Keselamatan dan Kesehatan Kerja (D-IV) dengan No. Pendaftaran: <strong>2509984</strong>.</p>
+            <div>
+              <a href="./assets/docs/pdf-pengumuman-hasil-sbt-polteknaker-2025_compress.pdf" target="_blank" rel="noopener noreferrer" class="journey-doc-link" title="Buka / Download PDF Pengumuman Hasil SBT Polteknaker 2025">
+                <i class="ph ph-file-pdf"></i> Lihat / Unduh Pengumuman SBT (PDF) ↗
+              </a>
+            </div>
+          </div>
+          <div class="journey-card-img" style="margin-top: 1.5rem; border-radius: 12px; overflow: hidden; height: 160px; cursor: zoom-in; position: relative;">
+            <img src="./assets/images/mirror_selfie/mirror selfie.webp" alt="Seleksi Polteknaker" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="img-count-badge" style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem;">1 / 1 📸</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience 5: Peneguhan Sidi GPIB Immanuel -->
+      <div class="journey-item journey-item--left" data-gsap="fade-right">
+        <div class="journey-dot" style="border-color: #10b981;">
+          <span class="journey-dot-inner" style="background-color: #10b981;"></span>
+        </div>
+        <div class="journey-card card" style="--accent: #10b981;" data-images='["./assets/images/PENAIKAN_SIDI/PENAIKAN_SIDI.webp", "./assets/images/PENAIKAN_SIDI/PENGAKUAN_JANJI.webp"]'>
+          <div class="glow"></div>
+          <div class="journey-card-top">
+            <span class="journey-icon"><i class="ph ph-church"></i></span>
+            <span class="journey-year">2 April 2023</span>
+          </div>
+          <div class="journey-text-content">
+            <h3 class="journey-card-title">Peneguhan Sidi Baru — GPIB Immanuel Medan</h3>
+            <h4 class="journey-card-company">GPIB Jemaat Immanuel Medan · Ibadah Prapaskah</h4>
+            <p class="journey-card-desc">Menerima sakramen Peneguhan Sidi Baru dalam Ibadah Minggu I Prapaskah di hadapan jemaat GPIB Immanuel Medan, dilayani oleh Pdt. Johny A. Lontoh dengan nats Matius 21:1-11, meneguhkan komitmen iman dan kedewasaan spiritual.</p>
+          </div>
+          <div class="journey-card-img" style="margin-top: 1.5rem; border-radius: 12px; overflow: hidden; height: 160px; cursor: zoom-in; position: relative;">
+            <img src="./assets/images/PENAIKAN_SIDI/PENAIKAN_SIDI.webp" alt="Peneguhan Sidi GPIB Immanuel" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="img-count-badge" style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem;">1 / 2 📸</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  04 — SKILLS SECTION
+═══════════════════════════════════════════ -->
+<section id="skills" class="section skills-section">
+  <div class="container">
+    <div class="section-header" data-gsap="fade-up">
+      <span class="section-num">04</span>
+      <div class="section-title-group">
+        <span class="section-eyebrow">What I do best</span>
+        <h2 class="section-title">Skills & <em>Passions</em></h2>
+      </div>
+    </div>
+
+    <!-- Skill grid -->
+    <div class="skills-grid" id="skills-grid">
+      <div class="skill-card card" data-brand="#e8e8e8" data-gsap="fade-up" style="--di:0">
+        <div class="glow"></div>
+        <div class="skill-card-header">
+          <span class="skill-icon"><i class="ph ph-books"></i></span>
+          <div class="skill-logo-bar"></div>
+        </div>
+        <h3 class="skill-name">Historical Research</h3>
+        <p class="skill-desc">Riset mendalam arsip sejarah, telaah tokoh perjuangan, dan penggalian fakta unik nusantara.</p>
+        <div class="skill-level-wrap">
+          <div class="skill-bar"><div class="skill-fill" data-pct="95"></div></div>
+          <span>95%</span>
+        </div>
+        <div class="skill-tags"><span>Archival</span><span>History</span><span>Research</span></div>
+      </div>
+
+      <div class="skill-card card" data-brand="#c0c0c0" data-gsap="fade-up" style="--di:1">
+        <div class="glow"></div>
+        <div class="skill-card-header">
+          <span class="skill-icon"><i class="ph ph-video-camera"></i></span>
+          <div class="skill-logo-bar"></div>
+        </div>
+        <h3 class="skill-name">Content Creation & Storytelling</h3>
+        <p class="skill-desc">Menyusun skrip naratif, produksi video edukatif di YouTube/TikTok, dan komunikasi audio-visual.</p>
+        <div class="skill-level-wrap">
+          <div class="skill-bar"><div class="skill-fill" data-pct="92"></div></div>
+          <span>92%</span>
+        </div>
+        <div class="skill-tags"><span>Storytelling</span><span>Video</span><span>Narration</span></div>
+      </div>
+
+      <div class="skill-card card" data-brand="#d4d4d4" data-gsap="fade-up" style="--di:2">
+        <div class="glow"></div>
+        <div class="skill-card-header">
+          <span class="skill-icon"><i class="ph ph-buildings"></i></span>
+          <div class="skill-logo-bar"></div>
+        </div>
+        <h3 class="skill-name">Hospitality Management</h3>
+        <p class="skill-desc">Pengelolaan perhotelan, service excellence, operasional pariwisata, dan etika profesional.</p>
+        <div class="skill-level-wrap">
+          <div class="skill-bar"><div class="skill-fill" data-pct="90"></div></div>
+          <span>90%</span>
+        </div>
+        <div class="skill-tags"><span>Hospitality</span><span>Hotel</span><span>Service</span></div>
+      </div>
+
+      <div class="skill-card card" data-brand="#b8b8b8" data-gsap="fade-up" style="--di:3">
+        <div class="glow"></div>
+        <div class="skill-card-header">
+          <span class="skill-icon"><i class="ph ph-compass"></i></span>
+          <div class="skill-logo-bar"></div>
+        </div>
+        <h3 class="skill-name">Museum Curation & Heritage</h3>
+        <p class="skill-desc">Eksplorasi artefak, apresiasi warisan kebudayaan, dan pengarsipan sejarah Sumatera Utara.</p>
+        <div class="skill-level-wrap">
+          <div class="skill-bar"><div class="skill-fill" data-pct="88"></div></div>
+          <span>88%</span>
+        </div>
+        <div class="skill-tags"><span>Museum</span><span>Heritage</span><span>Culture</span></div>
+      </div>
+    </div>
+
+    <!-- Marquee -->
+    <div class="marquee-section" data-gsap="fade-up">
+      <h3 class="marquee-title">Things I love & explore —</h3>
+      <div class="marquee-wrap">
+        <div class="marquee-grad left"></div>
+        <div class="marquee-track" id="marquee-track">
+          <div class="marquee-item-wrap"><i class="ph ph-landmark"></i> Museum Walks</div>
+          <div class="marquee-item-wrap"><i class="ph ph-scroll"></i> Indonesian Heritage</div>
+          <div class="marquee-item-wrap"><i class="ph ph-books"></i> History Research</div>
+          <div class="marquee-item-wrap"><i class="ph ph-video-camera"></i> Video Production</div>
+          <div class="marquee-item-wrap"><i class="ph ph-buildings"></i> Hospitality</div>
+          <div class="marquee-item-wrap"><i class="ph ph-coffee"></i> Coffee Rituals</div>
+          <div class="marquee-item-wrap"><i class="ph ph-map-pin"></i> Medan City</div>
+          <div class="marquee-item-wrap"><i class="ph ph-camera"></i> Photography</div>
+          <div class="marquee-item-wrap"><i class="ph ph-music-notes"></i> Melody & Chords</div>
+          <div class="marquee-item-wrap"><i class="ph ph-church"></i> Faith & Grace</div>
+          <!-- duplicate for loop -->
+          <div class="marquee-item-wrap"><i class="ph ph-landmark"></i> Museum Walks</div>
+          <div class="marquee-item-wrap"><i class="ph ph-scroll"></i> Indonesian Heritage</div>
+          <div class="marquee-item-wrap"><i class="ph ph-books"></i> History Research</div>
+          <div class="marquee-item-wrap"><i class="ph ph-video-camera"></i> Video Production</div>
+          <div class="marquee-item-wrap"><i class="ph ph-buildings"></i> Hospitality</div>
+        </div>
+        <div class="marquee-grad right"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  05 — GALLERY SECTION
+═══════════════════════════════════════════ -->
+<section id="gallery" class="section gallery-section">
+  <div class="container">
+    <div class="section-header" data-gsap="fade-up">
+      <span class="section-num">05</span>
+      <div class="section-title-group">
+        <span class="section-eyebrow">Memories, Artifacts & Videos</span>
+        <h2 class="section-title">My <em>Gallery</em></h2>
+      </div>
+      <div style="margin-top: 2.5rem; position: relative; display: flex; justify-content: flex-start; align-items: center;">
+        <style>
+          @keyframes recap-float { 0%, 100% { transform: translateY(0) translateX(-50%); } 50% { transform: translateY(-8px) translateX(-50%); } }
+          #btn-cinematic:hover { transform: scale(1.05); border-color: rgba(255,255,255,0.5) !important; box-shadow: 0 15px 35px rgba(255,255,255,0.1) !important; }
+        </style>
+        
+        <div style="position: relative; display: inline-block;">
+          <!-- Floating tooltip -->
+          <div style="position: absolute; top: -55px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; color: #fff; white-space: nowrap; animation: recap-float 2.5s ease-in-out infinite; pointer-events: none; z-index: 2; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
+            Mau lihat cinematic recap? Tekan saya! ✨
+            <div style="content: ''; position: absolute; bottom: -6px; left: 50%; margin-left: -6px; border-width: 6px 6px 0; border-style: solid; border-color: rgba(255,255,255,0.3) transparent transparent transparent;"></div>
+          </div>
+          
+          <!-- Cinematic Button -->
+          <button id="btn-cinematic" style="background: linear-gradient(135deg, #111, #1a1a1a); color: #fff; border: 1px solid rgba(255,255,255,0.15); padding: 14px 32px; border-radius: 40px; font-size: 0.95rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); letter-spacing: 1px;">
+            <span style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: #fff; color: #000; border-radius: 50%; padding-left: 3px;">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="5,3 19,12 5,21"/></svg>
+            </span>
+            Play Cinematic Recap
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-tabs" id="dynamic-gallery-tabs" data-gsap="fade-up">
+      <button class="gtab active" data-f="all">All</button>
+      <button class="gtab" data-f="konten_sejarah">Konten Sejarah</button>
+      <button class="gtab" data-f="museum_sumut">Museum Sumut</button>
+      <button class="gtab" data-f="peneguhan_sidi">Peneguhan Sidi</button>
+      <button class="gtab" data-f="portraits_life">Portraits & Life</button>
+    </div>
+
+    <div class="gallery-grid" id="dynamic-gallery-grid">
+      <!-- Generated dynamically by main.js with video & image support -->
+    </div>
+
+    <div id="lightbox" class="lightbox">
+      <div class="lb-backdrop"></div>
+      <div class="lb-inner">
+        <button class="lb-close" id="lb-close">✕</button>
+        <div class="lb-content" id="lb-content"></div>
+        <button class="lb-prev" id="lb-prev">‹</button>
+        <button class="lb-next" id="lb-next">›</button>
+        <div class="lb-counter" id="lb-counter">1 / 1</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  06 — CONTACT SECTION
+═══════════════════════════════════════════ -->
+<section id="contact" class="section contact-section">
+  <div class="container">
+    <div class="section-header" data-gsap="fade-up">
+      <span class="section-num">06</span>
+      <div class="section-title-group">
+        <span class="section-eyebrow">Say hello</span>
+        <h2 class="section-title">Let's <em>Connect</em></h2>
+      </div>
+    </div>
+
+    <div class="contact-layout">
+      <!-- Social links -->
+      <div class="contact-social" data-gsap="fade-right">
+        <p class="contact-tagline">
+          "Mari terhubung, bertukar kisah sejarah bangsa, dan berbagi inspirasi untuk masa depan yang lebih bermakna."
+        </p>
+        <div class="social-stack">
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@NabilaAlviny" target="_blank" class="social-item" id="s-yt">
+            <span class="social-item-icon"><i class="ph ph-youtube-logo"></i></span>
+            <div class="social-item-info">
+              <span class="social-item-name">YouTube</span>
+              <span class="social-item-handle">@NabilaAlviny · Bahas Sejarah</span>
+            </div>
+            <span class="social-item-arrow">→</span>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/nabilalviny/" target="_blank" class="social-item" id="s-ig">
+            <span class="social-item-icon"><i class="ph ph-instagram-logo"></i></span>
+            <div class="social-item-info">
+              <span class="social-item-name">Instagram</span>
+              <span class="social-item-handle">@nabilalviny</span>
+            </div>
+            <span class="social-item-arrow">→</span>
+          </a>
+
+          <!-- TikTok -->
+          <a href="https://www.tiktok.com/@nabilaviny" target="_blank" class="social-item" id="s-tt">
+            <span class="social-item-icon"><i class="ph ph-tiktok-logo"></i></span>
+            <div class="social-item-info">
+              <span class="social-item-name">TikTok</span>
+              <span class="social-item-handle">@nabilaviny</span>
+            </div>
+            <span class="social-item-arrow">→</span>
+          </a>
+
+          <!-- Facebook -->
+          <a href="https://web.facebook.com/p/Nabila-Alviny-61595614892249/?_rdc=1&_rdr#" target="_blank" class="social-item" id="s-fb">
+            <span class="social-item-icon"><i class="ph ph-facebook-logo"></i></span>
+            <div class="social-item-info">
+              <span class="social-item-name">Facebook</span>
+              <span class="social-item-handle">Nabila Alviny</span>
+            </div>
+            <span class="social-item-arrow">→</span>
+          </a>
+
+          <!-- Doc IPDN -->
+          <a href="./assets/docs/pdf-lulus-verifikasi-calon-praja-2024_compress.pdf" target="_blank" class="social-item" id="s-doc1">
+            <span class="social-item-icon"><i class="ph ph-file-pdf"></i></span>
+            <div class="social-item-info">
+              <span class="social-item-name">Verifikasi Praja IPDN 2024</span>
+              <span class="social-item-handle">SK Rektor No. 800.1.2.2-246</span>
+            </div>
+            <span class="social-item-arrow">→</span>
+          </a>
+
+          <!-- Doc Polteknaker -->
+          <a href="./assets/docs/pdf-pengumuman-hasil-sbt-polteknaker-2025_compress.pdf" target="_blank" class="social-item" id="s-doc2">
+            <span class="social-item-icon"><i class="ph ph-file-pdf"></i></span>
+            <div class="social-item-info">
+              <span class="social-item-name">Hasil SBT Polteknaker 2025</span>
+              <span class="social-item-handle">Program Studi K3 (D-IV)</span>
+            </div>
+            <span class="social-item-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact form -->
+      <div class="contact-form-col" data-gsap="fade-left">
+        <form id="contact-form" class="contact-form" onsubmit="handleForm(event)">
+          <div class="cf-field">
+            <input type="text" id="cf-name" placeholder=" " required />
+            <label for="cf-name">Your Name</label>
+          </div>
+          <div class="cf-field">
+            <input type="email" id="cf-email" placeholder=" " required />
+            <label for="cf-email">Your Email</label>
+          </div>
+          <div class="cf-field">
+            <textarea id="cf-msg" placeholder=" " rows="4" required></textarea>
+            <label for="cf-msg">Your Message</label>
+          </div>
+          <button type="submit" class="cta-btn cta-btn--primary form-submit">
+            <span>Send Message</span>
+            <span class="cta-btn-arrow">→</span>
+          </button>
+        </form>
+        <div id="form-success" class="form-success" style="display:none">
+          <span class="fs-icon">✓</span>
+          <h4>Message Sent!</h4>
+          <p>Thank you — I'll get back to you soon.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-logo" id="footer-name">Nabila Stevani Alviny Gultom</span>
+        <p class="footer-tagline">Personal Universe · 2026</p>
+      </div>
+      <div class="footer-center">
+        <p class="footer-copy">Crafted with passion for Indonesian Heritage & Hospitality</p>
+      </div>
+      <div class="footer-right">
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="footer-top-btn">↑ Top</button>
+      </div>
+    </div>
+    <div class="footer-rule"></div>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════ -->
+<script src="./js/particles.js"></script>
+<script src="./js/gallery_data.js"></script>
+<script src="./js/gallery.js"></script>
+<script src="./js/data.js"></script>
+<script src="./js/main.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('Service Worker registered!', reg))
+        .catch(err => console.log('Service Worker registration failed: ', err));
+    });
+  }
+</script>
+</body>
+</html>

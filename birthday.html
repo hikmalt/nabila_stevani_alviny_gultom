@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>— Happy Birthday Nabila ✦ —</title>
+  <meta name="description" content="A special birthday surprise for Nabila Stevani Alviny Gultom." />
+  <meta name="theme-color" content="#050505" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+  <link rel="apple-touch-icon" href="./favicon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Dancing+Script:wght@400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" href="./css/style.css" />
+  <style>
+    body { background-color: #050505; color: #f5f5f5; overflow-x: hidden; cursor: auto !important; }
+    #main-nav { background: rgba(5,5,5,0.8); }
+    
+    /* Intro Unlock Screen */
+    #unlock-screen {
+      position: fixed; inset: 0; z-index: 99999;
+      background: #050505; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
+    .unlock-btn {
+      padding: 1.2rem 3rem; background: transparent; border: 1px solid rgba(255,255,255,0.3);
+      color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 1rem;
+      border-radius: 50px; cursor: pointer; position: relative; overflow: hidden;
+      transition: all 0.4s ease; text-transform: uppercase; letter-spacing: 2px;
+    }
+    .unlock-btn:hover { background: #fff; color: #000; border-color: #fff; box-shadow: 0 0 20px rgba(255,255,255,0.4); }
+    
+    /* Surprise Letter */
+    .envelope-wrapper {
+      position: relative; width: 350px; height: 240px; margin: 4rem auto; cursor: pointer;
+      perspective: 1000px; z-index: 10;
+    }
+    .envelope {
+      position: absolute; width: 100%; height: 100%;
+      background: #1a1a1a; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      transition: transform 0.6s ease;
+    }
+    .envelope-flap {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: #222; clip-path: polygon(0 0, 50% 50%, 100% 0);
+      transform-origin: top; transition: transform 0.6s ease 0.2s; z-index: 3;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 1; }
+    .envelope-wrapper.open .envelope { transform: translateY(50px); }
+    
+    .letter {
+      position: absolute; bottom: 0; left: 10px; right: 10px; height: 90%;
+      background: #fff; padding: 2rem 1.5rem; border-radius: 5px;
+      color: #111; font-family: 'Playfair Display', serif; font-size: 0.95rem; line-height: 1.6;
+      text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      transition: transform 0.8s ease 0.4s, height 0.8s ease 0.4s; z-index: 2;
+      overflow: hidden;
+    }
+    .envelope-wrapper.open .letter { transform: translateY(-180px); height: 400px; z-index: 4; overflow-y: auto; scrollbar-width: thin; }
+    
+    .letter-content { opacity: 0; transition: opacity 0.4s ease 1s; }
+    .envelope-wrapper.open .letter-content { opacity: 1; }
+    .letter-title { font-family: 'Dancing Script', cursive; font-size: 2rem; color: #d4af37; margin-bottom: 1rem; }
+    
+    /* Reasons Cards */
+    .reasons-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;
+    }
+    .reason-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      padding: 2.5rem 2rem; border-radius: 20px; text-align: center;
+      transition: transform 0.4s ease, background 0.4s ease, border-color 0.4s ease;
+      position: relative; overflow: hidden;
+    }
+    .reason-card:hover {
+      transform: translateY(-10px); background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .reason-icon { font-size: 2.5rem; margin-bottom: 1rem; display: inline-block; }
+    .reason-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .reason-desc { font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; color: #aaa; }
+    
+  </style>
+</head>
+<body>
+
+<!-- PREMIUM CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- UNLOCK SCREEN -->
+<div id="unlock-screen">
+  <div class="lock-icon" style="font-size: 3rem; margin-bottom: 2rem; color: #fff;">🔒</div>
+  <button class="unlock-btn" id="unlock-btn">Unlock Surprise</button>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-initial">N</span>
+      <span class="logo-full">Nabila Stevani Alviny Gultom</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">← Back to Portfolio</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO BIRTHDAY -->
+<section class="section birthday-hero" style="min-height: 100vh; padding-top: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden;">
+  <!-- Background Slideshow -->
+  <div id="bday-bg-slideshow" style="position:absolute; inset:0; z-index:0; overflow:hidden;">
+    <img id="bday-bg-img" src="./assets/images/random_me/profil.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.35; transition:opacity 1s;" />
+    <div style="position:absolute; inset:0; background: linear-gradient(to bottom, transparent, #050505);"></div>
+  </div>
+  
+  <canvas id="bday-particles" style="position:absolute; inset:0; z-index:1; pointer-events:none;"></canvas>
+  
+  <div class="bd-content" data-gsap="fade-up" style="position:relative; z-index:2; width:100%; max-width:1100px;">
+    <!-- Floating Framed Images CSS -->
+    <style>
+      .bday-float-card { position: absolute; border: 8px solid #fff; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); overflow: hidden; z-index: -1; background: #fff; }
+      @media(max-width: 768px) {
+        .m-hide { display: none !important; }
+        .bday-float-card { transform: scale(0.6) !important; }
+      }
+    </style>
+
+    <div class="bd-badge" style="margin-top:0.5rem;">✦ A Special Celebration ✦</div>
+    <h1 class="bd-title" style="margin-bottom: 1rem;">
+      <span class="bd-title-line1" style="display:block; font-size: clamp(2rem, 4vw, 3rem); font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: 10px; color: #aaa;">Happy</span>
+      <span class="bd-title-line2" style="display:block; font-size: clamp(4rem, 8vw, 8rem); font-family: 'Playfair Display', serif; font-style: italic; font-weight: 300; line-height: 1;">Birthday</span>
+      <span class="bd-title-name" style="display:block; font-family: 'Dancing Script', cursive; font-size: clamp(3rem, 6vw, 5rem); color: #d4af37; margin-top: -10px;">Nabila</span>
+    </h1>
+
+    <div class="bday-typewriter-wrap" style="min-height: 60px; margin: 2rem 0;">
+      <p id="bday-typewriter" class="bday-typewriter-text" style="font-family: 'Mona Sans', sans-serif; font-size: 1.1rem; color: #ccc;"></p>
+    </div>
+
+    <!-- COUNTDOWN -->
+    <div id="birthday-topbar" style="margin: 2rem auto;">
+      <div id="dynamic-countdown" class="bd-countdown" style="display: flex; gap: 1.5rem; justify-content: center;">
+      </div>
+    </div>
+    
+    <div id="birthday-now-banner" style="display:none; color: #d4af37; font-size: 1.25rem; font-family: 'Space Grotesk'; letter-spacing: 2px; margin: 2rem 0;">
+      IT'S YOUR SPECIAL DAY! 🎉
+    </div>
+
+    <button id="start-bday-btn" class="cta-btn cta-btn--primary" style="margin-top: 2rem;">
+      Celebrate Now ✨
+    </button>
+  </div>
+</section>
+
+<!-- SURPRISE LETTER -->
+<section class="section letter-section" style="padding: 100px 0; background: #080808; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;">
+  <div class="container">
+    <div class="section-header" data-gsap="fade-up">
+      <div class="section-title-group" style="margin: 0 auto;">
+        <span class="section-eyebrow">A little something</span>
+        <h2 class="section-title">Surprise <em>Letter</em></h2>
+        <p style="color:#888; margin-top: 1rem; font-family:'Space Grotesk',sans-serif;">Click the envelope to open</p>
+      </div>
+    </div>
+    
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 4rem; margin-top: 3rem; margin-bottom: 6rem;">
+      <!-- First Letter -->
+      <div class="envelope-wrapper" data-gsap="fade-up" style="transform: scale(1.1); transform-origin: top center; margin: 0;">
+        <div class="envelope-flap"></div>
+        <div class="envelope"></div>
+        <div class="letter">
+          <div class="letter-content">
+            <h3 class="letter-title">Dear Nabila,</h3>
+            <p style="font-size: 0.95rem;">Selamat hari ulang tahun, Nabila! Semoga senantiasa dilimpahi kebahagiaan, kesehatan, keberhasilan dalam studi di Poltekpar Medan, serta ide-ide cemerlang dalam membagikan kisah sejarah nusantara.</p>
+            <p style="margin-top: 1rem; font-style: italic; font-size: 0.95rem;">Teruslah bersinar menjadi pencerita yang hebat dan menginspirasi! ✨</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Letter (Confess Letter) -->
+      <div class="envelope-wrapper" data-gsap="fade-up" style="transform: scale(1.1); transform-origin: top center; animation-delay: 0.2s; margin: 0;">
+        <div class="envelope-flap"></div>
+        <div class="envelope"></div>
+        <div class="letter">
+          <div class="letter-content">
+            <h3 class="letter-title" style="font-size: 1.8rem; margin-bottom: 0.6rem;">A Special Confession ✨</h3>
+            <p style="font-size: 0.82rem; text-align: left; margin-bottom: 0.6rem; line-height: 1.5; color: #222;">Halo <strong>Nabila Stevani Alviny Gultom</strong>, selamat bertambah usia! Semoga harimu senantiasa dipenuhi berkat, kesehatan, sukacita yang melimpah, dan kesuksesan dalam studimu di Poltekpar Medan. Kiranya Tuhan senantiasa memberkati setiap langkahmu.</p>
+            <p style="font-size: 0.82rem; text-align: left; line-height: 1.55; color: #333; font-style: italic;">"Jujur... to be completely honest, I actually have a crush on you. I'm really drawn to who you are — I truly admire how passionate you are about uncovering the unique history of Indonesia, and I love the effortless, captivating way you tell stories. I know this might feel a little sudden, but... would it be okay if we got to know each other better? Hehe. 😊✨"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CINEMATIC RECAP -->
+<section class="section cinema-section" style="padding: 100px 0; background: #050505;">
+  <div class="container">
+    <div class="section-header" data-gsap="fade-up">
+      <div class="section-title-group" style="margin: 0 auto; text-align: center;">
+        <h2 class="section-title">Cinematic <em>Recap</em></h2>
+        <p style="color:#888; margin-top: 1rem; font-family:'Space Grotesk',sans-serif;">Your beautiful moments & history journey, playing endlessly</p>
+      </div>
+    </div>
+    
+    <div id="cinema-recap-box" style="margin: 3rem auto; width: 95%; max-width: 1200px; height: 75vh; min-height: 400px; background: #000; border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;" data-gsap="fade-up">
+      <!-- Progress Bar -->
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.15); z-index: 15;">
+        <div id="cinema-progress-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #d4af37, #f7d794, #fff); transition: width 0.1s linear;"></div>
+      </div>
+
+      <!-- Top Title & Status Badges -->
+      <div id="cinema-title-badge" style="position: absolute; top: 20px; left: 24px; background: rgba(20,20,20,0.85); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 18px; border-radius: 24px; font-size: 0.85rem; z-index: 15; pointer-events: none; max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: 'Space Grotesk', sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"></div>
+      <div id="cinema-status-badge" style="position: absolute; top: 20px; right: 24px; background: rgba(20,20,20,0.85); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.2); color: #d4af37; padding: 8px 16px; border-radius: 24px; font-size: 0.8rem; font-weight: 600; z-index: 15; pointer-events: none; font-family: 'Space Grotesk', sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"></div>
+
+      <img id="cinema-recap-img" src="" style="width: 100%; height: 100%; object-fit: contain; filter: grayscale(100%); transition: filter 0.4s ease, opacity 0.4s ease; cursor: zoom-in;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'" />
+      <video id="cinema-recap-video" playsinline style="width: 100%; height: 100%; object-fit: contain; display: none; opacity: 0; filter: grayscale(100%); transition: filter 0.4s ease, opacity 0.4s ease; cursor: pointer; background: #000;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'"></video>
+      
+      <!-- Controls -->
+      <div id="cinema-controls" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(20,20,20,0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); border-radius: 30px; padding: 10px 22px; display: flex; gap: 16px; align-items: center; z-index: 15; box-shadow: 0 8px 25px rgba(0,0,0,0.6);">
+        <button id="cinema-prev" style="background: none; border: none; color: #fff; font-size: 1.3rem; line-height: 1; cursor: pointer; outline: none; padding: 0 6px; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">‹</button>
+        <button id="cinema-play-pause" style="background: none; border: none; color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 0.92rem; font-weight: 600; cursor: pointer; outline: none; letter-spacing: 1px; display: flex; align-items: center; gap: 6px;">⏸ Pause</button>
+        <button id="cinema-next" style="background: none; border: none; color: #fff; font-size: 1.3rem; line-height: 1; cursor: pointer; outline: none; padding: 0 6px; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">›</button>
+        <span style="color: rgba(255,255,255,0.25);">|</span>
+        <button id="cinema-fullscreen" style="background: none; border: none; color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 0.92rem; font-weight: 600; cursor: pointer; outline: none; letter-spacing: 1px; display: flex; align-items: center; gap: 6px;">⛶ Fullscreen</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REASONS / CONSTELLATION -->
+<section class="section reasons-section" style="padding: 100px 0; background: #050505;">
+  <div class="container">
+    <div class="section-header" data-gsap="fade-up">
+      <div class="section-title-group" style="margin-left: 0; text-align: center;">
+        <h2 class="section-title" style="text-align:center;">Why You're <em>Amazing</em></h2>
+      </div>
+    </div>
+    
+    <div class="reasons-grid">
+      <div class="reason-card" data-gsap="fade-up" style="--di:0">
+        <span class="reason-icon">🏛️</span>
+        <h3 class="reason-title">History Storyteller</h3>
+        <p class="reason-desc">Kemampuan dan antusiasmemu merangkai kisah sejarah bangsa menjadi konten yang hidup dan menarik sungguh menginspirasi.</p>
+      </div>
+      <div class="reason-card" data-gsap="fade-up" style="--di:1">
+        <span class="reason-icon">🧠</span>
+        <h3 class="reason-title">Brilliant & Dedicated</h3>
+        <p class="reason-desc">Dari perkuliahan D-IV Perhotelan di Poltekpar Medan hingga pencapaian <a href="./assets/docs/pdf-lulus-verifikasi-calon-praja-2024_compress.pdf" target="_blank" rel="noopener noreferrer" style="color:#d4af37; text-decoration:underline; font-weight:600;" title="Buka Dokumen SK Verifikasi Calon Praja IPDN 2024">seleksi IPDN ↗</a> &amp; <a href="./assets/docs/pdf-pengumuman-hasil-sbt-polteknaker-2025_compress.pdf" target="_blank" rel="noopener noreferrer" style="color:#d4af37; text-decoration:underline; font-weight:600;" title="Buka Dokumen Pengumuman Hasil SBT Polteknaker 2025">Polteknaker ↗</a>, ketekunanmu terpancar nyata.</p>
+      </div>
+      <div class="reason-card" data-gsap="fade-up" style="--di:2">
+        <span class="reason-icon">💖</span>
+        <h3 class="reason-title">Warm & Faithful Soul</h3>
+        <p class="reason-desc">Berakar kuat dalam iman dan ketulusan hati di GPIB Immanuel, kehadiranmu selalu membawa energi positif bagi sekitar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW FEATURES WILL GO HERE -->
+
+<!-- INTERACTIVE TIMELINE -->
+<section class="section timeline-section" style="padding: 100px 0; background: #080808; border-top: 1px solid rgba(255,255,255,0.05);">
+  <div class="container">
+    <div class="section-header" data-gsap="fade-up">
+      <div class="section-title-group" style="margin: 0 auto; text-align: center;">
+        <h2 class="section-title">Memory <em>Timeline</em></h2>
+        <p style="color:#888; margin-top: 1rem; font-family:'Space Grotesk',sans-serif;">A journey through our beautiful moments</p>
+      </div>
+    </div>
+    <div id="memory-timeline" style="position: relative; max-width: 800px; margin: 4rem auto; padding: 20px 0;">
+      <!-- Dynamic timeline items will be generated here by birthday.js -->
+    </div>
+  </div>
+</section>
+
+<!-- AUDIO VISUALIZER & MINIGAME OVERLAY -->
+<div id="visualizer-container" style="position:fixed; bottom:0; left:0; width:100%; height:150px; pointer-events:none; z-index:9;">
+  <canvas id="audio-visualizer"></canvas>
+</div>
+
+<!-- MINIGAME: Catch Nabila -->
+<section class="section minigame-section" style="padding: 100px 0; background: #050505; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;">
+  <div class="container">
+    <div class="section-header" data-gsap="fade-up">
+      <div class="section-title-group" style="margin: 0 auto;">
+        <span class="section-eyebrow">Play & Celebrate</span>
+        <h2 class="section-title">Catch <em>Nabila</em> ✨</h2>
+        <p style="color:#888; margin-top: 1rem; font-family:'Space Grotesk',sans-serif;">Tangkap 10 foto Nabila yang melayang sebelum waktu habis untuk membuka Special Birthday Wish! 💖</p>
+      </div>
+    </div>
+    <div style="margin-top: 2rem;" data-gsap="fade-up">
+      <button id="start-minigame-btn" class="cta-btn cta-btn--primary">Play "Catch Nabila" 💖</button>
+    </div>
+    <div id="minigame-area" style="display:none; position:relative; width:100%; max-width:1200px; height:650px; margin: 3rem auto; background:radial-gradient(circle at center, #181818 0%, #080808 100%); border:1px solid rgba(255,255,255,0.15); border-radius:24px; overflow:hidden; cursor:crosshair; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
+      <div id="minigame-score" style="position:absolute; top:20px; left:24px; color:#d4af37; font-family:'Space Grotesk'; font-size:1.35rem; font-weight:700; z-index:10; background:rgba(20,20,20,0.85); backdrop-filter:blur(8px); padding:8px 20px; border-radius:30px; border:1px solid rgba(255,255,255,0.15); box-shadow:0 4px 15px rgba(0,0,0,0.5);">Score: 0 / 10</div>
+      <div id="minigame-timer" style="position:absolute; top:20px; right:24px; color:#fff; font-family:'Space Grotesk'; font-size:1.35rem; font-weight:700; z-index:10; background:rgba(20,20,20,0.85); backdrop-filter:blur(8px); padding:8px 20px; border-radius:30px; border:1px solid rgba(255,255,255,0.15); box-shadow:0 4px 15px rgba(0,0,0,0.5);">30s</div>
+    </div>
+  </div>
+</section>
+
+<!-- Additional components will go here -->
+<div id="fireworks-container" style="position:fixed; inset:0; pointer-events:none; z-index:9999;"></div>
+<div id="confetti-container" style="position:fixed; inset:0; pointer-events:none; z-index:9998;"></div>
+<div id="cake-canvas-container" style="position:fixed; inset:0; pointer-events:none; z-index:9997;"></div>
+
+<!-- BIRTHDAY MINI PLAYER -->
+<div id="bday-music-widget" class="music-widget" style="opacity:0; pointer-events:none; transition:opacity 0.5s; z-index:999999;">
+  <button id="bday-music-toggle" class="music-toggle" aria-label="Toggle music">
+    <svg id="bday-icon-play" viewBox="0 0 24 24" fill="currentColor" style="display:none"><polygon points="5,3 19,12 5,21"/></svg>
+    <svg id="bday-icon-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+  </button>
+  <div class="music-bars" id="bday-music-bars">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <span class="music-label" style="text-transform: capitalize;">Now Playing — Birthday Theme</span>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// Polyfill CapsuleGeometry for r128 using a cylinder
+if (typeof THREE !== 'undefined' && !THREE.CapsuleGeometry) {
+    THREE.CapsuleGeometry = function(radius, length, capSegments, radialSegments) {
+        return new THREE.CylinderGeometry(radius, radius, length + radius * 2, radialSegments || 8);
+    };
+}
+</script>
+<script src="./js/cake3d.js"></script>
+<script src="./js/gallery_data.js?v=2"></script>
+<script src="./js/birthday.js?v=4"></script>
+<script>
+  // Debugging All Clicks
+  window.addEventListener('click', (e) => {
+    console.log("👆 Clicked Element:", e.target.tagName, e.target.id, e.target.className);
+    console.log("Full Element:", e.target);
+  });
+
+  // Unlock Screen Logic
+  let bdayAudio = null;
+  const unlockBtnEl = document.getElementById('unlock-btn');
+  if (unlockBtnEl) {
+    unlockBtnEl.style.pointerEvents = 'auto';
+    unlockBtnEl.style.zIndex = '9999999';
+    unlockBtnEl.style.position = 'relative';
+  }
+
+  document.addEventListener('click', function(e) {
+    if (e.target && (e.target.id === 'unlock-btn' || e.target.closest('#unlock-btn'))) {
+      console.log("🔓 Unlock button clicked via delegation!");
+      
+      const allScreens = document.querySelectorAll('#unlock-screen');
+      console.log("🔍 Found", allScreens.length, "unlock-screens in DOM");
+      
+      const screen = e.target.closest('#unlock-screen') || document.getElementById('unlock-screen');
+      const icon = document.querySelector('.lock-icon');
+      const widget = document.getElementById('bday-music-widget');
+      if(icon) icon.textContent = '🔓';
+      
+      // Nuke ALL unlock screens just to be 1000% sure
+      allScreens.forEach(s => {
+        s.style.transition = 'none';
+        s.style.display = 'none !important';
+        s.remove();
+      });
+      console.log("💥 All unlock screens destroyed!");
+
+      // Ensure all videos in floating cards start playing smoothly
+      if (typeof window.playBdayCardVideos === 'function') {
+        window.playBdayCardVideos();
+      }
+
+      // Play Birthday Background Music
+      if (!bdayAudio) {
+        bdayAudio = new Audio('./assets/backsounds/for_ucapan_birthday.opus');
+        window.bdayAudio = bdayAudio; // expose globally
+        bdayAudio.loop = true;
+        bdayAudio.play().then(() => {
+          if(widget) {
+            widget.style.opacity = '1';
+            widget.style.pointerEvents = 'auto';
+          }
+        }).catch(err => {
+          if (err.name !== 'AbortError') console.warn('Audio play notice:', err);
+        });
+
+        // Miniplayer logic
+        if(widget) {
+          widget.addEventListener('click', () => {
+            const iPlay = document.getElementById('bday-icon-play');
+            const iPause = document.getElementById('bday-icon-pause');
+            if (!bdayAudio.paused) {
+              bdayAudio.pause();
+              widget.classList.add('paused');
+              if(iPlay) iPlay.style.display = ''; 
+              if(iPause) iPause.style.display = 'none';
+            } else {
+              bdayAudio.play();
+              widget.classList.remove('paused');
+              if(iPlay) iPlay.style.display = 'none'; 
+              if(iPause) iPause.style.display = '';
+            }
+          });
+          // Auto collapse
+          setTimeout(() => widget.classList.add('collapsed'), 4000);
+        }
+      }
+
+      setTimeout(() => {
+        // Trigger animations
+        if (typeof gsap !== 'undefined') {
+          gsap.utils.toArray('[data-gsap="fade-up"]').forEach(el => {
+            gsap.to(el, { y: 0, opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.2, delay: 0.5 });
+          });
+        } else {
+          console.error("GSAP is not loaded!");
+        }
+      }, 100);
+    }
+  });
+
+  // Envelope Logic
+  document.querySelectorAll('.envelope-wrapper').forEach(wrapper => {
+    wrapper.addEventListener('click', function() {
+      this.classList.toggle('open');
+    });
+  });
+
+  // Simple particles for hero
+  const canvas = document.getElementById('bday-particles');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let particles = [];
+
+  function initParticles() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    particles = [];
+    for(let i=0; i<50; i++) {
+      particles.push({
+        x: Math.random() * width, y: Math.random() * height,
+        r: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5
+      });
+    }
+  }
+
+  function drawParticles() {
+    ctx.clearRect(0,0,width,height);
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if(p.x < 0) p.x = width; if(p.x > width) p.x = 0;
+      if(p.y < 0) p.y = height; if(p.y > height) p.y = 0;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+    });
+    requestAnimationFrame(drawParticles);
+  }
+
+  initParticles(); drawParticles();
+  window.addEventListener('resize', initParticles);
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('Service Worker registered for birthday page!', reg))
+        .catch(err => console.log('Service Worker registration failed: ', err));
+    });
+  }
+</script>
+</body>
+</html>
